@@ -50,5 +50,8 @@
   },
   "dependencies": {
     "cookies": "^0.7.0"
+  },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/"
   }
 }
