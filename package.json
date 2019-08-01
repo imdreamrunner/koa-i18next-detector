@@ -1,6 +1,6 @@
 {
-  "name": "koa-i18next-detector",
-  "version": "0.7.2",
+  "name": "koa-i18next-detector-async",
+  "version": "0.0.0",
   "description": "A i18next language detecting plugin for Koa 2.0 framework.",
   "main": "dist/index.js",
   "files": [
@@ -22,7 +22,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/lxzxl/koa-i18next-detector.git"
+    "url": "git+https://github.com/imdreamrunner/koa-i18next-detector.git"
   },
   "keywords": [
     "i18next detector koa"
@@ -30,9 +30,9 @@
   "author": "lxzxl <lixiaozheng1990@gmail.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/lxzxl/koa-i18next-detector/issues"
+    "url": "https://github.com/imdreamrunner/koa-i18next-detector/issues"
   },
-  "homepage": "https://github.com/lxzxl/koa-i18next-detector#readme",
+  "homepage": "https://github.com/imdreamrunner/koa-i18next-detector",
   "devDependencies": {
     "babel-cli": "^6.24.1",
     "babel-core": "^6.24.1",

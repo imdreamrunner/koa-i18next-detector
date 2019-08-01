@@ -39,6 +39,7 @@ function defaults(obj) {
 class LanguageDetector {
     constructor(services, options = {}, i18nextOptions = {}) {
         this.type = 'languageDetector';
+        this.async = true;
         this.detectors = {};
 
         this.init(services, options, i18nextOptions);
@@ -64,18 +65,24 @@ class LanguageDetector {
         this.detectors[detector.name] = detector;
     }
 
-    detect(ctx) {
+    async detect(ctx) {
         if (arguments.length < 1) {
             return;
         }
 
         let found;
-        this.options.order.forEach(detectorName => {
+        for (let detectorName of this.options.order) {
             if (found || !this.detectors[detectorName] || !this.detectors[detectorName].lookup) {
                 return;
             }
 
-            let detections = this.detectors[detectorName].lookup(ctx, this.options);
+            let detections
+            if (this.detectors[detectorName].async) {
+                detections = await this.detectors[detectorName].lookup(ctx, this.options);
+            } else {
+                detections = this.detectors[detectorName].lookup(ctx, this.options);
+            }
+
             if (!detections) return;
             if (typeof detections === 'string') {
                 detections = [detections];
@@ -91,7 +98,7 @@ class LanguageDetector {
                     ctx.i18nextLookupName = detectorName;
                 };
             });
-        });
+        }
 
         return found || (this.i18nextOptions.fallbackLng && this.i18nextOptions.fallbackLng[0]);
     }
@@ -114,7 +121,5 @@ class LanguageDetector {
         });
     }
 }
-
-LanguageDetector.type = 'languageDetector';
 
 export default LanguageDetector;
